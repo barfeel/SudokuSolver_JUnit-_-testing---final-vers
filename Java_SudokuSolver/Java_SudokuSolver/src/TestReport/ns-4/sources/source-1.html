@@ -1,0 +1,258 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ControllerClassesTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test</a>
+</div>
+
+<h1>Coverage Summary for Class: ControllerClassesTests (test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ControllerClassesTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (65/65)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package test;
+&nbsp;
+&nbsp;
+&nbsp;import nl.elridge.sudoku.controller.ButtonController;
+&nbsp;import nl.elridge.sudoku.controller.SudokuController;
+&nbsp;import nl.elridge.sudoku.model.Game;
+&nbsp;import nl.elridge.sudoku.view.SudokuPanel;
+&nbsp;import org.junit.Assert;
+&nbsp;import org.junit.Test;
+&nbsp;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;import java.awt.event.ActionEvent;
+&nbsp;import java.awt.event.MouseEvent;
+&nbsp;import java.lang.reflect.InvocationTargetException;
+&nbsp;import java.lang.reflect.Method;
+&nbsp;
+&nbsp;import static java.awt.event.ActionEvent.ACTION_PERFORMED;
+&nbsp;import static java.awt.event.MouseEvent.MOUSE_CLICKED;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;public class ControllerClassesTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestActionPerformed() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        ButtonController buttonController = new ButtonController(game);</b>
+&nbsp;        // if Action Command = &quot;New&quot;
+<b class="fc">&nbsp;        ActionEvent event = new ActionEvent(this, ACTION_PERFORMED, &quot;New&quot;);</b>
+<b class="fc">&nbsp;        String CommandName = event.getActionCommand();</b>
+<b class="fc">&nbsp;        buttonController.actionPerformed(event);</b>
+<b class="fc">&nbsp;        assertEquals(CommandName, &quot;New&quot;);</b>
+&nbsp;
+&nbsp;        // if Action command = &quot;Check&quot;
+<b class="fc">&nbsp;        ActionEvent event1 = new ActionEvent(this, ACTION_PERFORMED, &quot;Check&quot;);</b>
+<b class="fc">&nbsp;        String CommandName1 = event1.getActionCommand();</b>
+<b class="fc">&nbsp;        buttonController.actionPerformed(event1);</b>
+<b class="fc">&nbsp;        assertEquals(CommandName1, &quot;Check&quot;);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testActionPerformed() {
+&nbsp;
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        ButtonController controller = new ButtonController(game);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        ActionEvent newEvent = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, &quot;New&quot;);</b>
+<b class="fc">&nbsp;        ActionEvent checkEvent = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, &quot;Check&quot;);</b>
+<b class="fc">&nbsp;        JCheckBox helpCheckBox = new JCheckBox(&quot;Help on&quot;);</b>
+<b class="fc">&nbsp;        ActionEvent helpEvent = new ActionEvent(helpCheckBox, ActionEvent.ACTION_PERFORMED, &quot;Help on&quot;);</b>
+<b class="fc">&nbsp;        ActionEvent numberEvent = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, &quot;5&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;        controller.actionPerformed(newEvent);</b>
+<b class="fc">&nbsp;        String commandNew = newEvent.getActionCommand();</b>
+<b class="fc">&nbsp;        assertEquals(commandNew , &quot;New&quot;);</b>
+&nbsp;
+<b class="fc">&nbsp;        controller.actionPerformed(checkEvent);</b>
+<b class="fc">&nbsp;        String commandCheck = checkEvent.getActionCommand();</b>
+<b class="fc">&nbsp;        assertEquals(commandCheck , &quot;Check&quot;);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        controller.actionPerformed(helpEvent);</b>
+<b class="fc">&nbsp;        String commandHelp = helpEvent.getActionCommand();</b>
+<b class="fc">&nbsp;        assertEquals(commandHelp,&quot;Help on&quot;);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        controller.actionPerformed(numberEvent);</b>
+<b class="fc">&nbsp;        String number = numberEvent.getActionCommand();</b>
+<b class="fc">&nbsp;        assertEquals(number,&quot;5&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestHelpOnOff(){
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        game.newGame();</b>
+<b class="fc">&nbsp;        game.setHelp(true);</b>
+<b class="fc">&nbsp;        Assert.assertTrue(game.isHelp());</b>
+&nbsp;
+&nbsp;
+&nbsp;     // Turn off test
+<b class="fc">&nbsp;        game.setHelp(false);</b>
+<b class="fc">&nbsp;        assertFalse(game.isHelp());</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestMouseClickedWithValidCoordinates() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        SudokuPanel sudokuPanel = new SudokuPanel();</b>
+<b class="fc">&nbsp;        SudokuController sudokuController = new SudokuController(sudokuPanel, game);</b>
+<b class="fc">&nbsp;        MouseEvent event = new MouseEvent(sudokuPanel, MOUSE_CLICKED,</b>
+<b class="fc">&nbsp;                System.currentTimeMillis(), 0,</b>
+&nbsp;                50, 50, 1, false);
+<b class="fc">&nbsp;        sudokuController.mouseClicked(event);</b>
+<b class="fc">&nbsp;        assertNotNull(event);</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestMouseClickedWithInvalidCoordinates() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        SudokuPanel sudokuPanel = new SudokuPanel();</b>
+<b class="fc">&nbsp;        SudokuController sudokuController = new SudokuController(sudokuPanel, game);</b>
+<b class="fc">&nbsp;        MouseEvent event = new MouseEvent(sudokuPanel, MOUSE_CLICKED,</b>
+<b class="fc">&nbsp;                System.currentTimeMillis(), 0,</b>
+&nbsp;                500, 500, 1, false);
+&nbsp;
+<b class="fc">&nbsp;        sudokuController.mouseClicked(event);</b>
+<b class="fc">&nbsp;        assertNotNull(event.getClickCount());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestMouseEntered() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        SudokuPanel sudokuPanel = new SudokuPanel();</b>
+<b class="fc">&nbsp;        SudokuController sudokuController = new SudokuController(sudokuPanel, game);</b>
+<b class="fc">&nbsp;        MouseEvent event = new MouseEvent(sudokuPanel, MouseEvent.MOUSE_ENTERED,</b>
+<b class="fc">&nbsp;                System.currentTimeMillis(), 0,</b>
+&nbsp;                10, 10, 0, false);
+&nbsp;
+<b class="fc">&nbsp;        Method method = SudokuController.class.getDeclaredMethod(&quot;mouseEntered&quot;, MouseEvent.class);</b>
+&nbsp;
+<b class="fc">&nbsp;        method.invoke(sudokuController, event);</b>
+<b class="fc">&nbsp;        assertNotNull(event);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestMouseExited() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        SudokuPanel sudokuPanel = new SudokuPanel();</b>
+<b class="fc">&nbsp;        SudokuController sudokuController = new SudokuController(sudokuPanel, game);</b>
+<b class="fc">&nbsp;        JPanel panel = new JPanel();</b>
+<b class="fc">&nbsp;        MouseEvent event = new MouseEvent(sudokuPanel, MouseEvent.MOUSE_EXITED,</b>
+<b class="fc">&nbsp;                System.currentTimeMillis(), 0,</b>
+&nbsp;                10, 10, 0, false);
+<b class="fc">&nbsp;        sudokuController.mouseExited(event);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-01 15:39</div>
+</div>
+</body>
+</html>

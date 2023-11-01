@@ -1,0 +1,238 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ViewClassesTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test</a>
+</div>
+
+<h1>Coverage Summary for Class: ViewClassesTests (test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ViewClassesTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (54/54)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package test;
+&nbsp;
+&nbsp;import nl.elridge.sudoku.model.Game;
+&nbsp;import nl.elridge.sudoku.model.UpdateAction;
+&nbsp;import nl.elridge.sudoku.view.ButtonPanel;
+&nbsp;import nl.elridge.sudoku.view.Field;
+&nbsp;import nl.elridge.sudoku.view.Sudoku;
+&nbsp;import nl.elridge.sudoku.view.SudokuPanel;
+&nbsp;import org.junit.Test;
+&nbsp;
+&nbsp;import javax.swing.*;
+&nbsp;
+&nbsp;import java.awt.*;
+&nbsp;
+&nbsp;
+&nbsp;import static nl.elridge.sudoku.model.UpdateAction.*;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;
+<b class="fc">&nbsp;public class ViewClassesTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestStartGui() {
+<b class="fc">&nbsp;        Sudoku sudoku = new Sudoku();</b>
+<b class="fc">&nbsp;        sudoku.main(null);</b>
+<b class="fc">&nbsp;        assertTrue(sudoku.getContentPane().getLayout() instanceof BorderLayout);</b>
+<b class="fc">&nbsp;        assert sudoku != null;</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSudokuConstructor() {
+<b class="fc">&nbsp;        Sudoku sudoku = new Sudoku();</b>
+<b class="fc">&nbsp;        assertEquals(&quot;Sudoku&quot;, sudoku.getTitle());</b>
+<b class="fc">&nbsp;        assertEquals(WindowConstants.EXIT_ON_CLOSE, sudoku.getDefaultCloseOperation());</b>
+<b class="fc">&nbsp;        assertTrue(sudoku.getContentPane().getLayout() instanceof BorderLayout);</b>
+<b class="fc">&nbsp;        assert sudoku != null;</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGetFieldX() {
+<b class="fc">&nbsp;        int expectedX = 7;</b>
+<b class="fc">&nbsp;        Field field = new Field(expectedX, 7);</b>
+<b class="fc">&nbsp;        assertEquals(expectedX, field.getFieldX());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestGetFieldY() {
+<b class="fc">&nbsp;        int expectedY = 8;</b>
+<b class="fc">&nbsp;        Field field = new Field(8, expectedY);</b>
+<b class="fc">&nbsp;        assertEquals(expectedY, field.getFieldY());</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSudokuPanelUpdateNewGame() {
+<b class="fc">&nbsp;        SudokuPanel sudokuPanel = new SudokuPanel();</b>
+<b class="fc">&nbsp;        Game game = new Game();</b>
+&nbsp;        boolean NewGame;
+<b class="fc">&nbsp;        UpdateAction action = NEW_GAME;</b>
+<b class="fc">&nbsp;        sudokuPanel.update(game, action);</b>
+<b class="fc">&nbsp;        assertEquals(action, NEW_GAME);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSudokuPanelUpdateCheck() {
+<b class="fc">&nbsp;        SudokuPanel sudokuPanel = new SudokuPanel();</b>
+<b class="fc">&nbsp;        Game game = new Game();</b>
+&nbsp;        boolean NewGame;
+<b class="fc">&nbsp;        UpdateAction action = UpdateAction.CHECK;</b>
+<b class="fc">&nbsp;        sudokuPanel.update(game, action);</b>
+<b class="fc">&nbsp;        assertEquals(action, CHECK);</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;    @Test
+&nbsp;    public void TestSudokuPanelUpdateSELECTED_NUMBER(){
+<b class="fc">&nbsp;        SudokuPanel sudokuPanel = new SudokuPanel();</b>
+<b class="fc">&nbsp;        Game game = new Game();</b>
+&nbsp;        boolean NewGame;
+<b class="fc">&nbsp;        UpdateAction action = SELECTED_NUMBER;</b>
+<b class="fc">&nbsp;        sudokuPanel.update(game, action);</b>
+<b class="fc">&nbsp;        assertEquals(action, SELECTED_NUMBER);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestSudokuPanelUpdateCANDIDATES() {
+<b class="fc">&nbsp;        SudokuPanel sudokuPanel = new SudokuPanel();</b>
+<b class="fc">&nbsp;        Game game = new Game();</b>
+&nbsp;        boolean NewGame;
+<b class="fc">&nbsp;        UpdateAction action = CANDIDATES;</b>
+<b class="fc">&nbsp;        sudokuPanel.update(game, action);</b>
+<b class="fc">&nbsp;        assertEquals(action, CANDIDATES);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestButtonPanelUpdateMethod() {
+<b class="fc">&nbsp;        ButtonPanel buttonPanel = new ButtonPanel();</b>
+<b class="fc">&nbsp;        Game game = new Game();</b>
+&nbsp;
+&nbsp;        //case NEW_GAME:
+<b class="fc">&nbsp;        boolean setGameCalled = false;</b>
+<b class="fc">&nbsp;        UpdateAction action = NEW_GAME;</b>
+<b class="fc">&nbsp;        buttonPanel.update(game, action);</b>
+<b class="fc">&nbsp;        if (action == NEW_GAME) {</b>
+<b class="fc">&nbsp;            setGameCalled = true;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        assertTrue(setGameCalled);</b>
+&nbsp;
+&nbsp;        //case CHECK:
+<b class="fc">&nbsp;        boolean setCheckCalled = false;</b>
+<b class="fc">&nbsp;        int bgNumbersCalculator = 1;</b>
+<b class="fc">&nbsp;        UpdateAction action1 = UpdateAction.CHECK;</b>
+<b class="fc">&nbsp;        buttonPanel.update(game, action1);</b>
+<b class="fc">&nbsp;        if (action1 == UpdateAction.CHECK) {</b>
+<b class="fc">&nbsp;            setCheckCalled = true;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        assertTrue(setCheckCalled);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (setCheckCalled = true) {</b>
+<b class="fc">&nbsp;            bgNumbersCalculator = 0;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        assertEquals(0, bgNumbersCalculator);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-01 15:39</div>
+</div>
+</body>
+</html>

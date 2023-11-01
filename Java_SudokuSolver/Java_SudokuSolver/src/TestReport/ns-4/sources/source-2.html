@@ -1,0 +1,202 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GameClassTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test</a>
+</div>
+
+<h1>Coverage Summary for Class: GameClassTests (test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GameClassTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.7%
+  </span>
+  <span class="absValue">
+    (36/38)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package test;
+&nbsp;
+&nbsp;import nl.elridge.sudoku.controller.ButtonController;
+&nbsp;import nl.elridge.sudoku.model.Game;
+&nbsp;import org.junit.Test;
+&nbsp;import org.testng.Assert;
+&nbsp;
+&nbsp;
+&nbsp;import java.awt.event.ActionEvent;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;import static java.awt.event.ActionEvent.ACTION_PERFORMED;
+&nbsp;import static org.junit.Assert.*;
+&nbsp;import static org.testng.AssertJUnit.assertEquals;
+&nbsp;import static org.testng.AssertJUnit.assertFalse;
+&nbsp;
+<b class="fc">&nbsp;public class GameClassTests {</b>
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestNewGame() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        ButtonController controller = new ButtonController(game);</b>
+<b class="fc">&nbsp;        ActionEvent event = new ActionEvent(game, ACTION_PERFORMED, &quot;Exit&quot;);</b>
+<b class="fc">&nbsp;        game.newGame();</b>
+<b class="fc">&nbsp;        game.checkGame();</b>
+<b class="fc">&nbsp;        game.setSelectedNumber(2);</b>
+<b class="fc">&nbsp;        game.getSelectedNumber();</b>
+<b class="fc">&nbsp;        game.setNumber( 2, 2, 2 );</b>
+<b class="fc">&nbsp;        Assert.assertEquals( 2, game.getNumber(2,2));</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestCheckGame() {
+<b class="fc">&nbsp;        int[][] game = new int[9][9];</b>
+<b class="fc">&nbsp;        int[][] solution = new int[9][9];</b>
+<b class="fc">&nbsp;        boolean[][] check = new boolean[9][9];</b>
+&nbsp;
+<b class="fc">&nbsp;        for (int i = 0; i &lt; 9; i++) {</b>
+<b class="fc">&nbsp;            for (int j = 0; j &lt; 9; j++) {</b>
+<b class="fc">&nbsp;                game[i][j] = 0 * 9 + j * 1;</b>
+<b class="fc">&nbsp;                solution[i][j] = 0 * 9 + j * 1;</b>
+&nbsp;
+&nbsp;            }
+&nbsp;        }
+<b class="fc">&nbsp;        Game g = new Game();</b>
+<b class="fc">&nbsp;        g.checkGame();</b>
+<b class="fc">&nbsp;        for (int i = 0; i &lt; 9; i++) {</b>
+<b class="fc">&nbsp;            for (int j = 0; j &lt; 9; j++) {</b>
+<b class="fc">&nbsp;                check[i][j] = game[i][j] == solution[i][j];</b>
+<b class="fc">&nbsp;                assertEquals(check[i][j], true);</b>
+&nbsp;            }
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void TestIsCheckValid() {
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        int x = 0;</b>
+<b class="fc">&nbsp;        int y = 0;</b>
+<b class="fc">&nbsp;        game.setNumber(x,y,2);</b>
+<b class="fc">&nbsp;        assertFalse(game.isCheckValid(x ,y));</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void SelectedNumberCandidate(){
+<b class="fc">&nbsp;        Game game = new Game();</b>
+<b class="fc">&nbsp;        Random random = new Random();</b>
+<b class="fc">&nbsp;        int x = random.nextInt(9)+0;</b>
+<b class="fc">&nbsp;        int y = random.nextInt(9)+0;</b>
+<b class="fc">&nbsp;        int Random = random.nextInt(9)+0;</b>
+&nbsp;        //   boolean SelectedNumberIsCandidate;
+<b class="fc">&nbsp;        game.setNumber(x,y, Random);</b>
+&nbsp;        //   SelectedNumberIsCandidate = game.isSelectedNumberCandidate(x,y);
+<b class="fc">&nbsp;        if (game.isSelectedNumberCandidate(x, y) &amp;&amp; game.isCheckValid(x, y)) {</b>
+<b class="nc">&nbsp;            game.setNumber(x, y, game.getSelectedNumber());</b>
+<b class="nc">&nbsp;            assertTrue(game.isCheckValid(x, y));</b>
+&nbsp;        }else {
+<b class="fc">&nbsp;            assertFalse(game.isCheckValid(x, y));</b>
+&nbsp;        }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-11-01 15:39</div>
+</div>
+</body>
+</html>
